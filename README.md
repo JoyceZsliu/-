@@ -1,19 +1,32 @@
-# -*- coding: utf-8 -*-
 import random
-
-while True:
-    # 1 石头，2 剪刀，3 布
-    computer = random.randint(1, 3)
-    people = int(input('请输入数字1(石头)或2(剪刀)或3(布):'))
-
-    if people > 3 or people < 1:
-        people = int(input('对不起，您输错了，请重新输入正确的数字：'))
-
-    if (computer == 1 and people == 3) or (computer == 2 and people == 1) or (computer == 3 and people == 2):
-        print('小伙子，您赢了，真厉害~~')
-
-    elif computer == people:
-        print('平局，再来一次！')
-
-    else:
-        print('对不起，您输了，再来一局')
+import os
+import re
+os.system('cls' if os.name=='nt' else 'clear')
+while (1 < 2):
+    print ("\n")
+    print ("石头，剪刀，布 - 游戏开始!")
+    userChoice = input("选择你的武器 [R]石头, [P]布, or [S]剪刀: ")
+    if not re.match("[SsRrPp]", userChoice):
+        print ("Please choose a letter:")
+        print ("[R]石头, [S]剪刀 或者 [P]布.")
+        continue
+    
+    weapon_dic = {'R':"石头", 'r':"石头", "S":"剪刀", "s": "剪刀", "P":"布", "p":"布"}
+    print ("你选择了： " + weapon_dic[userChoice])
+    choices = ['R', 'P', 'S']
+    opponenetChoice = random.choice(choices)
+    print ("机器人选择了: " + weapon_dic[opponenetChoice])
+    if opponenetChoice == str.upper(userChoice):
+        print ("平手，再来吧，愚蠢的人类! ")
+    
+    elif opponenetChoice == 'R' and userChoice.upper() == 'S':      
+        print ("我赢了，愚蠢的人类! ")
+        continue
+    elif opponenetChoice == 'S' and userChoice.upper() == 'P':      
+        print ("我赢了, 愚蠢的人类! ")
+        continue
+    elif opponenetChoice == 'P' and userChoice.upper() == 'R':      
+        print ("我赢了, 愚蠢的人类! ")
+        continue
+    else:       
+        print ("你赢了，这局我大意了!")
